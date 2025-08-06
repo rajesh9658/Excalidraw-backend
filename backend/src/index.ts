@@ -37,7 +37,7 @@ const logStream = rfs.createStream("requestLogs.log", {
 const allowedOrigins = [
   "https://excali-sketch-main-excali-sketch-rajesh-kumar-padhis-projects.vercel.app",
   "https://excali-sketch-main-excali-sketch-owvsszvza.vercel.app",
-  "https://excali-sketch-main-excali-sketch.vercel.app/3*44",
+  "https://excali-sketch-main-excali-sketch.vercel.app",
   "http://localhost:3000",
 ];
 
