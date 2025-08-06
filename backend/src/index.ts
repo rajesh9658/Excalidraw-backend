@@ -35,20 +35,21 @@ const logStream = rfs.createStream("requestLogs.log", {
 //cors
 
 const allowedOrigins = [
-  "https://excali-sketch-main-excali-sketch-rajesh-kumar-padhis-projects.vercel.app/",
-  "https://excali-sketch-main-excali-sketch-owvsszvza.vercel.app/",
-  "https://excali-sketch-main-excali-sketch.vercel.app/",
+  "https://excali-sketch-main-excali-sketch-rajesh-kumar-padhis-projects.vercel.app",
+  "https://excali-sketch-main-excali-sketch-owvsszvza.vercel.app",
+  "https://excali-sketch-main-excali-sketch.vercel.app/3*44",
   "http://localhost:3000",
 ];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
+      if (!origin) return callback(null, true); // allow server-to-server or curl
 
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.warn(`Blocked CORS request from origin: ${origin}`);
         callback(new Error("Not allowed by CORS"));
       }
     },
@@ -57,6 +58,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 
 app.use(limiter);
 app.use(morgan("common", { stream: logStream }));
